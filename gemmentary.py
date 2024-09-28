@@ -19,7 +19,7 @@ if __name__=='__main__':
                 """,
         help="Prompt for generating the commentary.",
     )
-    parser.add_argument('--sport', type=str, default="table tennis women's singles")
+    parser.add_argument('--sport', type=str, default="diving men's 10m platform")
     parser.add_argument('--game', type=str, default="final")
     parser.add_argument('--player', type=str, default="Chao Yuan")
     parser.add_argument('--rag_data_type', type=str, default='json')
