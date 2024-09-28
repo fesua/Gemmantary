@@ -1,2 +1,38 @@
-# Gemmantary
-sports commentary with gemma
+# Gemmantary-sports commentary with gemma
+
+We conducted a project that takes Olympic videos as input and generates commentary based on them.
+
+## demo
+
+https://github.com/user-attachments/assets/49c77908-a89a-42df-8062-8d231df58526
+
+
+Good evening, sports fans, and welcome to the final of the diving men's 10m platform at the Paris Olympics. We have a battle for gold between two of the greatest gymnasts of all time, Chao Yuan from China and the defending champion, [Name of the competitor from another country].
+
+The Dive "The athletes take their positions on the platform, and the crowd is on its feet as the music starts. Chao Yuan jumps into the air with incredible precision and grace, his body arching as he prepares to make the dive. He executes a perfect somersault dive, showcasing his incredible athleticism and control. The crowd is on its feet, and the judges are watching the performance with rapt attention."
+
+The Aftermath "The impact is visually stunning as Chao Yuan hits the water with a splash, creating a moment of pure exhilaration. His body is perfectly arched, and his performance is a testament to the beauty of the sport. The judges give him a standing ovation for his incredible performance."
+
+Conclusion "And that concludes the final of the diving men's 10m platform at the Paris Olympics. Chao Yuan has secured his gold medal, and the crowd erupts in applause. It's been an incredible final, and we've witnessed some of the best diving the world has ever seen. Thank you for joining us for the coverage of the Paris Olympics."
+
+## We use 'Video-LLaVA' and 'LangChain'
+
+Video-LLaVA: https://github.com/PKU-YuanGroup/Video-LLaVA 
+
+LangChain: https://www.langchain.com/
+
+Gemma: https://huggingface.co/google/gemma-2-2b-it
+
+## Our Pipeline
+
+Our pipeline is as follows:
+
+1. Input: The user provides a video, the sport type, the name of the athlete, and the event information.
+
+2. Formatting: We place the sport type, athlete name, and event information into a custom format we designed.
+
+3. Video Description: Using Video-LLaVA, we generate a description of the video content.
+
+4. Commentary Generation: We integrate the video description with our custom format through RAG (Retrieval-Augmented Generation) and generate commentary using the Gemma model.
+
+## How to run our code
