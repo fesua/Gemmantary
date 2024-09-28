@@ -33,14 +33,13 @@ if __name__=='__main__':
 
     # Comentary Generator: Gemma
 
-    MODEL_PATH = "/kaggle/input/gemma/transformers/2b-it/3"
-    RAG_PATH = "./kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.json"
+    MODEL_PATH = "google/gemma-2b-it"
 
     if  args.rag_data_type == 'csv':
-        RAG_PATH = "/kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.csv"
+        RAG_PATH = "./data/sport_rag_data.csv"
         NUM_RETRIEVED_DOCS = 5
     else:
-        RAG_PATH = "/kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.json"
+        RAG_PATH = "./data/sport_rag_data.json"
         NUM_RETRIEVED_DOCS = 3
     
     ai_agent = AIAgent(model_path=MODEL_PATH)
