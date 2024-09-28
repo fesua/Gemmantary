@@ -2,11 +2,19 @@
 
 We conducted a project that takes Olympic videos as input and generates commentary based on them.
 
+<br>
+
 ## Example
-<User>: Make a script for a commentator's commentary on the final for the diving men's 10m platform for diving Chao Yuan at the Paris Olympics based on video caption.
+
+\<User\>: Make a script for a commentator's commentary on the final for the diving men's 10m platform for diving Chao Yuan at the Paris Olympics based on video caption.
+
+
+<br>
 
 https://github.com/user-attachments/assets/49c77908-a89a-42df-8062-8d231df58526
 
+
+<br>
 
 Good evening, sports fans, and welcome to the final of the diving men's 10m platform at the Paris Olympics. We have a battle for gold between two of the greatest gymnasts of all time, Chao Yuan from China and the defending champion, [Name of the competitor from another country].
 
@@ -17,6 +25,8 @@ The Aftermath "The impact is visually stunning as Chao Yuan hits the water with 
 Conclusion "And that concludes the final of the diving men's 10m platform at the Paris Olympics. Chao Yuan has secured his gold medal, and the crowd erupts in applause. It's been an incredible final, and we've witnessed some of the best diving the world has ever seen. Thank you for joining us for the coverage of the Paris Olympics."
 
 
+<br>
+
 ## We use 'Video-LLaVA' and 'LangChain' and 'Gemma'
 
 Video-LLaVA: https://github.com/PKU-YuanGroup/Video-LLaVA 
@@ -24,6 +34,8 @@ Video-LLaVA: https://github.com/PKU-YuanGroup/Video-LLaVA
 LangChain: https://www.langchain.com/
 
 Gemma: https://huggingface.co/google/gemma-2-2b-it
+
+<br>
 
 ## Our Pipeline
 
@@ -36,5 +48,8 @@ Our pipeline is as follows:
 3. Video Description: Using Video-LLaVA, we generate a description of the video content.
 
 4. Commentary Generation: We integrate the video description with our custom format through RAG (Retrieval-Augmented Generation) and generate commentary using the Gemma model.
+
+
+<br>
 
 ## How to run our code
