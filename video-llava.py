@@ -57,7 +57,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Generate video commentary using VideoLLaVA."
     )
-    parser.add_argument("video_path", type=str, help="Path to the video file.")
+    parser.add_argument("video_path", default="example.mp4", type=str, help="Path to the video file.")
     parser.add_argument(
         "--prompt",
         type=str,
