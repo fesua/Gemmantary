@@ -18,8 +18,7 @@ We conducted a project that takes Olympic videos as input and generates commenta
 
 <br>
 
-https://github.com/user-attachments/assets/49c77908-a89a-42df-8062-8d231df58526
-
+https://github.com/user-attachments/assets/3d41df80-f741-4bfb-81ca-a9193378b0a7
 
 <br>
 
