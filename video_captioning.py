@@ -10,13 +10,13 @@ class VideoCaptioner:
     Video-LLaVa video captioning
     It uses Video-LLaVa
     """
-    def __init__(self):
+    def __init__(self, model_path):
         # Load the model and move it to CUDA
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = VideoLlavaForConditionalGeneration.from_pretrained(
-            "LanguageBind/Video-LLaVA-7B-hf", torch_dtype=torch.float16, device_map="auto"
+            model_path, torch_dtype=torch.float16, device_map="auto"
             )
-        self.processor = VideoLlavaProcessor.from_pretrained("LanguageBind/Video-LLaVA-7B-hf")
+        self.processor = VideoLlavaProcessor.from_pretrained(model_path)
 
     def read_video(self, video_path):
         """

@@ -3,8 +3,6 @@ import torch
 from video_captioning import VideoCaptioner
 from commentary_generator import RAGSystem, AIAgent
 
-DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-
 if __name__=='__main__':
 
     parser = argparse.ArgumentParser(
@@ -29,12 +27,14 @@ if __name__=='__main__':
 
     # Video Captioning: Video-Llava
 
-    video_captioner=VideoCaptioner()
+    VIDEO_CAP_MODEL_PATH = "LanguageBind/Video-LLaVA-7B-hf"
+
+    video_captioner=VideoCaptioner(model_path=VIDEO_CAP_MODEL_PATH)
     VIDEO_CAPTION = video_captioner.generate_commentary(args.video_path, args.prompt)
 
     # Comentary Generator: Gemma
 
-    MODEL_PATH = "google/gemma-2b-it"
+    COM_MODEL_PATH = "google/gemma-2b-it"
 
     if  args.rag_data_type == 'csv':
         RAG_PATH = "./data/sport_rag_data.csv"
@@ -43,7 +43,7 @@ if __name__=='__main__':
         RAG_PATH = "./data/sport_rag_data.json"
         NUM_RETRIEVED_DOCS = 3
     
-    ai_agent = AIAgent(model_path=MODEL_PATH)
+    ai_agent = AIAgent(model_path=COM_MODEL_PATH)
 
     rag_system = RAGSystem(ai_agent, RAG_PATH, num_retrieved_docs=NUM_RETRIEVED_DOCS)
 

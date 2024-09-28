@@ -18,6 +18,7 @@ class AIAgent:
     It uses Gemma transformers 2b-it/3.
     """
     def __init__(self, model_path, max_length=1000):
+        self.device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
         self.max_length = max_length
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         self.gemma_lm = AutoModelForCausalLM.from_pretrained(model_path,device_map="auto")
@@ -39,7 +40,7 @@ class AIAgent:
     
     def generate(self, query, video_caption, retrieved_info):
         prompt = self.create_prompt(query, video_caption, retrieved_info)
-        input_ids = self.tokenizer(prompt, return_tensors="pt").to(DEVICE).input_ids
+        input_ids = self.tokenizer(prompt, return_tensors="pt").to(self.device).input_ids
         # Answer generation
         answer = self.gemma_lm.generate(
             input_ids,
