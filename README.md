@@ -2,7 +2,8 @@
 
 We conducted a project that takes Olympic videos as input and generates commentary based on them.
 
-## demo
+## Example
+<User>: Make a script for a commentator's commentary on the final for the diving men's 10m platform for diving Chao Yuan at the Paris Olympics based on video caption.
 
 https://github.com/user-attachments/assets/49c77908-a89a-42df-8062-8d231df58526
 
@@ -15,7 +16,8 @@ The Aftermath "The impact is visually stunning as Chao Yuan hits the water with 
 
 Conclusion "And that concludes the final of the diving men's 10m platform at the Paris Olympics. Chao Yuan has secured his gold medal, and the crowd erupts in applause. It's been an incredible final, and we've witnessed some of the best diving the world has ever seen. Thank you for joining us for the coverage of the Paris Olympics."
 
-## We use 'Video-LLaVA' and 'LangChain'
+
+## We use 'Video-LLaVA' and 'LangChain' and 'Gemma'
 
 Video-LLaVA: https://github.com/PKU-YuanGroup/Video-LLaVA 
 
