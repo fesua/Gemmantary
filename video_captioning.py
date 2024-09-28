@@ -18,7 +18,7 @@ class VideoCaptioner:
             )
         self.processor = VideoLlavaProcessor.from_pretrained("LanguageBind/Video-LLaVA-7B-hf")
 
-    def read_video(video_path):
+    def read_video(self, video_path):
         """
         Function to read and sample 8 frames uniformly from a video.
         """
