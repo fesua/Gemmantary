@@ -1,7 +1,7 @@
-from commentary_generator import RAGSystem, AIAgent
 import argparse
 import torch
-from video_captioning import read_video, generate_commentary
+from video_captioning import VideoCaptioner
+from commentary_generator import RAGSystem, AIAgent
 
 DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
@@ -29,7 +29,8 @@ if __name__=='__main__':
 
     # Video Captioning: Video-Llava
 
-    VIDEO_CAPTION = generate_commentary(args.video_path, args.prompt)
+    video_captioner=VideoCaptioner()
+    VIDEO_CAPTION = video_captioner.generate_commentary(args.video_path, args.prompt)
 
     # Comentary Generator: Gemma
 
