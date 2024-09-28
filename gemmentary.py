@@ -10,7 +10,7 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser(
         description="Generate video commentary using VideoLLaVA+Gemma."
     )
-    parser.add_argument("--video_path", type=str, help="Path to the video file.")
+    parser.add_argument("--video_path", type=str, help="example.mp4")
     parser.add_argument(
         "--VideoLLaVA_prompt",
         type=str,
@@ -20,8 +20,8 @@ if __name__=='__main__':
         help="Prompt for generating the commentary.",
     )
     parser.add_argument('--sport', type=str, default="table tennis women's singles")
-    parser.add_argument('--game', type=str, default="bronze medal match")
-    parser.add_argument('--player', type=str, default="between Sin Yubin and Hayata Hina")
+    parser.add_argument('--game', type=str, default="final")
+    parser.add_argument('--player', type=str, default="Chao Yuan")
     parser.add_argument('--rag_data_type', type=str, default='json')
     parser.add_argument('--num_retrieved_docs', type=int, default=3)
 
