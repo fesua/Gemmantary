@@ -1,17 +1,24 @@
 from commentary_generator import RAGSystem, AIAgent
 import argparse
 import torch
+from video_captioning import read_video, generate_commentary
 
 DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-MODEL_PATH = "/kaggle/input/gemma/transformers/2b-it/3"
-RAG_PATH = "./kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.json"
 
 if __name__=='__main__':
 
-    print('Gemmentary&&')
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('--video_path', type=str, default='./video.mp4')
+    parser = argparse.ArgumentParser(
+        description="Generate video commentary using VideoLLaVA+Gemma."
+    )
+    parser.add_argument("--video_path", type=str, help="Path to the video file.")
+    parser.add_argument(
+        "--VideoLLaVA_prompt",
+        type=str,
+        default="""
+                USER: <video> Generate a concise live sports commentary that highlights events from the video such as key plays. Provide clear descriptions of the events. The commentary must strictly reflect the events in the video and avoid unnecessary details. Do not include speculative or fabricated details. ASSISTANT:
+                """,
+        help="Prompt for generating the commentary.",
+    )
     parser.add_argument('--sport', type=str, default="table tennis women's singles")
     parser.add_argument('--game', type=str, default="bronze medal match")
     parser.add_argument('--player', type=str, default="between Sin Yubin and Hayata Hina")
@@ -22,10 +29,14 @@ if __name__=='__main__':
 
     # Video Captioning: Video-Llava
 
+    VIDEO_CAPTION = generate_commentary(args.video_path, args.prompt)
 
     # Comentary Generator: Gemma
 
-    if  rag_data_type == 'csv':
+    MODEL_PATH = "/kaggle/input/gemma/transformers/2b-it/3"
+    RAG_PATH = "./kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.json"
+
+    if  args.rag_data_type == 'csv':
         RAG_PATH = "/kaggle/input/sport-rag-datafor-sport-commentary/sport_rag_data.csv"
         NUM_RETRIEVED_DOCS = 5
     else:
