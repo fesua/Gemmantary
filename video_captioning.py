@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import argparse
 from transformers import VideoLlavaForConditionalGeneration, VideoLlavaProcessor
-from huggingface_hub import hf_hub_download
+from tqdm import tqdm
 
 class VideoCaptioner:
     """
@@ -14,8 +14,7 @@ class VideoCaptioner:
         # Load the model and move it to CUDA
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = VideoLlavaForConditionalGeneration.from_pretrained(
-            model_path, torch_dtype=torch.float16, device_map="auto"
-            )
+            model_path, torch_dtype=torch.float16, device_map="auto").to(self.device)
         self.processor = VideoLlavaProcessor.from_pretrained(model_path)
 
     def read_video(self, video_path):
@@ -32,21 +31,39 @@ class VideoCaptioner:
         ]
         return np.stack(frames)
 
-
     def generate_commentary(self, video_path, prompt):
+        # Step 1: Read the video and check if frames are loaded correctly
         video = self.read_video(video_path)
-        inputs = self.processor(text=prompt, videos=video, return_tensors="pt")
+        if video is None or len(video) == 0:
+            print("Error: Video frames were not properly loaded.")
+            return "Error loading video frames."
 
-        # Move inputs to the same device as the model
+        # Step 2: Process the inputs and check the processed input
+        inputs = self.processor(text=prompt, videos=video, return_tensors="pt")
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
-        # Generate output from the model
-        output_ids = self.model.generate(**inputs, max_length=300)
+        if inputs is None or len(inputs) == 0:
+            print("Error: Inputs were not properly processed.")
+            return "Error processing inputs."
 
-        # Decode the output to human-readable text
+        # Step 3: Generate output from the model using tqdm for progress
+        print("Generating commentary...")
+        with tqdm(total=500, desc="Generating output from the model") as pbar:
+            output_ids = self.model.generate(**inputs, max_length=500)
+            pbar.update(500)
+
+        if output_ids is None or len(output_ids) == 0:
+            print("Error: Model did not generate output.")
+            return "Error generating output."
+
+        # Step 4: Decode the output and check if the decoding is successful
         commentary = self.processor.batch_decode(output_ids, skip_special_tokens=True)
 
-        # Get the text after "ASSISTANT:" only
+        if commentary is None or len(commentary) == 0:
+            print("Error: Output could not be decoded.")
+            return "Error decoding output."
+
+        # Step 5: Extract the commentary part after "ASSISTANT:"
         if "ASSISTANT:" in commentary[0]:
             commentary = commentary[0].split("ASSISTANT:")[1].strip()
         else:

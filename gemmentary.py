@@ -15,6 +15,12 @@ if __name__=='__main__':
         default="""
                 USER: <video> Generate a concise live sports commentary that highlights events from the video such as key plays. Provide clear descriptions of the events. The commentary must strictly reflect the events in the video and avoid unnecessary details. Do not include speculative or fabricated details. ASSISTANT:
                 """,
+        help="Prompt for generating the video-captioning.",
+    )
+    parser.add_argument(
+        "--Gemma_prompt",
+        type=str,
+        default="Make a script for a commentator's commentary on the {game} for {sport} {player} at the Paris Olympics based on video caption.",
         help="Prompt for generating the commentary.",
     )
     parser.add_argument('--sport', type=str, default="diving men's 10m platform")
@@ -30,11 +36,14 @@ if __name__=='__main__':
     VIDEO_CAP_MODEL_PATH = "LanguageBind/Video-LLaVA-7B-hf"
 
     video_captioner=VideoCaptioner(model_path=VIDEO_CAP_MODEL_PATH)
-    VIDEO_CAPTION = video_captioner.generate_commentary(args.video_path, args.prompt)
+    VIDEO_CAPTION = video_captioner.generate_commentary(args.video_path, args.VideoLLaVA_prompt)
+
+    # Free GPU memory after video captioning is complete
+    torch.cuda.empty_cache()
 
     # Comentary Generator: Gemma
 
-    COM_MODEL_PATH = "google/gemma-2b-it"
+    COM_MODEL_PATH = "google/gemma-2-2b-it"
 
     if  args.rag_data_type == 'csv':
         RAG_PATH = "./data/sport_rag_data.csv"
@@ -47,8 +56,11 @@ if __name__=='__main__':
 
     rag_system = RAGSystem(ai_agent, RAG_PATH, num_retrieved_docs=NUM_RETRIEVED_DOCS)
 
-    prompt = "Make a script for a commentator's commentary on the {game} for {sport} {player} at the Paris Olympics based on video caption."
-    prompt = prompt.format(sport=args.sport, game=args.game, player=args.player, count=5)
-    answer = rag_system.query(prompt, VIDEO_CAPTION)
+    gemma_prompt = args.Gemma_prompt.format(sport=args.sport, game=args.game, player=args.player, count=5)
+    answer = rag_system.query(args.gemma_prompt, VIDEO_CAPTION)
+    
+    print(answer)
+
+
 
     
