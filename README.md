@@ -60,15 +60,16 @@ Our pipeline is as follows:
 
 ## How to run our code
 
-"""
+'''
 python gemmentary.py
-"""
+'''
 
 or directly run gemmentary.py on your IDE will work.
 
 with A100 GPU it will take about 45 seconds for entire process.
 
-**BEFORE YOU RUN THIS CODE PLEASE READ WARNING. IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.**
+**BEFORE YOU RUN THIS CODE PLEASE READ WARNING.**
+**IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.**
 
 <br>
 
