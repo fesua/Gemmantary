@@ -59,3 +59,23 @@ Our pipeline is as follows:
 <br>
 
 ## How to run our code
+
+"""
+python gemmentary.py
+"""
+
+or directly run gemmentary.py on your IDE will work.
+
+with A100 GPU it will take about 45 seconds for entire process.
+
+**BEFORE YOU RUN THIS CODE PLEASE READ WARNING. IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.**
+
+<br>
+
+## Warning
+
+We don't recommend running this code on your local machine unless you have a powerful GPU.
+
+If you want to test our code, we suggest using a Google Colab environment with an L4 GPU or A100 GPU. Make sure to select the **high RAM option.**
+
+Alternatively, you can check out the results directly by following the Colab link at the top of this page.

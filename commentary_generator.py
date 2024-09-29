@@ -37,7 +37,7 @@ class AIAgent:
         Answer:
         """
         return prompt
-    
+
     def generate(self, query, video_caption, retrieved_info):
         prompt = self.create_prompt(query, video_caption, retrieved_info)
         input_ids = self.tokenizer(prompt, return_tensors="pt").to(self.device).input_ids
@@ -50,10 +50,12 @@ class AIAgent:
         # Decode and return the answer
         answer = self.tokenizer.decode(answer[0], skip_special_tokens=True, skip_prompt=True)
         return prompt, answer
-    
+
 class RAGSystem:
+
     """Sentence embedding based Retrieval Based Augmented generation.
         Given database of pdf files, retriever finds num_retrieved_docs relevant documents"""
+
     def __init__(self, ai_agent, rag_path, num_retrieved_docs=1):
         # load the data
         self.num_docs = num_retrieved_docs
@@ -62,10 +64,10 @@ class RAGSystem:
             loader = CSVLoader(rag_path)
         else:
             loader = JSONLoader(file_path=rag_path, jq_schema='.documents[].content')
-            
+
         documents = loader.load()
         self.template = "\n\nQuestion:\n{question}\n\nAnswer:\n{answer}"
-        
+
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=800, 
             chunk_overlap=100)
@@ -82,16 +84,16 @@ class RAGSystem:
         # retrieve top k similar documents to query
         docs = self.retriever.get_relevant_documents(query)
         return docs
-    
+
     def query(self, query, video_caption):
         # generate the answer
         context = self.retrieve(query)
         data = ""
         for item in list(context):
             data += item.page_content
-            
+
         data = data[:5000]
 
         prompt, answer = self.ai_agent.generate(query, video_caption, data)
-        
+
         return self.template.format(question=query, answer=answer)

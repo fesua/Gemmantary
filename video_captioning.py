@@ -14,7 +14,8 @@ class VideoCaptioner:
         # Load the model and move it to CUDA
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = VideoLlavaForConditionalGeneration.from_pretrained(
-            model_path, torch_dtype=torch.float16, device_map="auto").to(self.device)
+            model_path, torch_dtype=torch.float16
+        ).to(self.device)
         self.processor = VideoLlavaProcessor.from_pretrained(model_path)
 
     def read_video(self, video_path):
@@ -69,4 +70,6 @@ class VideoCaptioner:
         else:
             commentary = commentary[0].strip()
 
+        # # Uncomment below for check output
+        # print(f"Commentary: {commentary}")
         return commentary
