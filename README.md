@@ -67,7 +67,7 @@ You can run the code using the following command:
 python gemmentary.py
 ```
 
-Alternatively, you can directly execute gemmentary.py in your IDE.
+Alternatively, you can directly execute `gemmentary.py` in your IDE.
 
 With an A100 GPU, the entire process should take around 45 seconds.
 
@@ -76,9 +76,9 @@ To see the input requirements for your own video, run:
 python gemmentary.py -h 
 ```
 
-**BEFORE YOU RUN THIS CODE PLEASE READ WARNING.**
+:heavy_exclamation_mark:: **BEFORE YOU RUN THIS CODE PLEASE READ WARNING.** :heavy_exclamation_mark:
 <br>
-**IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.**
+:heavy_exclamation_mark: **IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.** :heavy_exclamation_mark:
 
 <br>
 
