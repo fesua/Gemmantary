@@ -82,7 +82,7 @@ To see the input requirements for your own video, run:
 python gemmentary.py -h 
 ```
 
-:heavy_exclamation_mark:: **BEFORE YOU RUN THIS CODE PLEASE READ WARNING.** :heavy_exclamation_mark:
+:heavy_exclamation_mark: **BEFORE YOU RUN THIS CODE PLEASE READ WARNING.** :heavy_exclamation_mark:
 <br>
 :heavy_exclamation_mark: **IT MIGHT NOT WORK PERFECT ON YOUR LOCAL DEVICE.** :heavy_exclamation_mark:
 
@@ -94,6 +94,6 @@ We **do not** recommend running this code on your local machine unless you have 
 
 For testing, we suggest using **Google Colab** with either an **L4 GPU or A100 GPU.** Be sure to select the **High RAM option** when configuring your Colab environment.
 
-Alternatively, you can explore the results directly by following the [**Colab link**](https://colab.research.google.com/drive/1PuezmbUfrJPvqJUM5qnOuUm5kPrbUV6X?usp=sharing) at the top of this page.
+Alternatively, you can explore the results directly by following the [**Colab link_1**](https://colab.research.google.com/drive/1PuezmbUfrJPvqJUM5qnOuUm5kPrbUV6X?usp=sharing) and [**Colab link_2**](https://colab.research.google.com/drive/1PuezmbUfrJPvqJUM5qnOuUm5kPrbUV6X?usp=sharing)at the top of this page.
 
 
